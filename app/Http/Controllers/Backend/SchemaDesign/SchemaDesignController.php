@@ -14,10 +14,10 @@ class SchemaDesignController extends Controller
     }
 
     public function chat(Request $request)
-    { 
+    {   
         $apiUrl = 'https://api.openai.com/v1/chat/completions';
 
-        $apiKey = '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';
+        $apiKey = config('openai.api_key');
 
         $client = new Client();
 

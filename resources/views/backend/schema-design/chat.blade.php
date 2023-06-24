@@ -97,7 +97,7 @@
         </div> --}}
         <!-- Typing container -->
 
-        <div class="chat-container overflow-y-scroll" style="height: 32rem"></div>
+        <div class="chat-container overflow-y-scroll w-100 h-[calc(100vh-235px)]"></div>
 
         <!-- Typing container -->
         {{-- <div class="typing-container relative d-flex">

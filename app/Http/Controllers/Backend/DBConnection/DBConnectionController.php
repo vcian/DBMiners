@@ -21,7 +21,7 @@ class DBConnectionController extends Controller
      *
      * @return void
      */
-    public function __construct(Protected DBConnectionService $dBConnectionService)
+    public function __construct(protected DBConnectionService $dBConnectionService)
     {
         $this->middleware('auth');
     }
@@ -31,9 +31,18 @@ class DBConnectionController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
+            if ($request->chat == 'false') {
+                Session::forget('isChat');
+                Session::forget('dbSchema');
+            }
+
+            if (Session::has('isChat')) {
+                return view('backend.chat.index');
+            }
+
             return view('backend.db-connect.create');
         } catch (Exception $ex) {
             Log::info($ex);
@@ -46,23 +55,15 @@ class DBConnectionController extends Controller
      * @param $request
      * @return mixed
      */
-    public function connect(Request $request) : mixed
+    public function connect(Request $request): mixed
     {
-        $response = Constant::EMPTY_ARRAY;
+        $response = $this->dBConnectionService->connect($request);
 
-        try {
-            $response = $this->dBConnectionService->connect($request);
-            
-            if ($response) {
-                Session::put('DBRequest', $request->input());
-                return redirect(route('backend.standards.index'))
-                    ->with('flash_success', __('db_connection.connected_successfully'));
-            }
-            
-        } catch (Exception $ex) {
-            Log::error($ex);
+        if ($response) {
+            return redirect(route('backend.query_logs.chat'))
+                ->with('flash_success', __('db_connection.connected_successfully'));
         }
-        
+
         return redirect()->back()->with('flash_error', __('db_connection.something_went_wrong'));
     }
 
@@ -72,23 +73,23 @@ class DBConnectionController extends Controller
      * @param $request
      * @return mixed
      */
-    public function upload(Request $request) : mixed
+    public function upload(Request $request): mixed
     {
         $response = Constant::EMPTY_ARRAY;
 
         try {
             $response = $this->dBConnectionService->upload($request);
-            
+
             if ($response) {
                 return redirect()
                     ->back()
                     ->with('flash_success', __('db_connection.uploaded_successfully'));
             }
-            
+
         } catch (Exception $ex) {
             Log::error($ex);
         }
-        
+
         return redirect()->back()->with('flash_error', __('db_connection.something_went_wrong'));
     }
 }

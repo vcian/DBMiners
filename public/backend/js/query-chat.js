@@ -127,7 +127,7 @@ const handleOutgoingChat = () => {
 // Event listener for delete button
 deleteButton.on("click", () => {
     let baseUrl = window.location.origin;
-    let url = `${baseUrl}/db-connect`;
+    let url = `${baseUrl}/db-connect?chat=false`;
     if (confirm("Are you sure you want to delete all the chats?")) {
         localStorage.removeItem("all-chats");
         window.location.href = url;

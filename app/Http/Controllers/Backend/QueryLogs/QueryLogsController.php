@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend\QueryLogs;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
 use OpenAI;
 
 class QueryLogsController extends Controller
@@ -43,6 +46,8 @@ class QueryLogsController extends Controller
     public function openChat()
     {
         try {
+            Session::put('isChat', true);
+
             return view('backend.chat.index');
         } catch (Exception $ex) {
             Log::info($ex);
@@ -51,11 +56,15 @@ class QueryLogsController extends Controller
 
     public function callOpenAIChatAPI(Request $request)
     {
-        $schema = $request->schema;
+        if (Session::has('dbSchema')) {
+            $schema = Session::get('dbSchema');
+        } else {
+            $schema = $request->schema;
+        }
         $userText = $request->userText;
         $language = $request->language;
         $apiUrl = 'https://api.openai.com/v1/chat/completions';
-        $apiKey = config('services.open_ai.secret');
+        $apiKey = config('openai.api_key');
         $client = new Client();
 
         $response = $client->post($apiUrl, [
@@ -66,11 +75,11 @@ class QueryLogsController extends Controller
             'json' => [
                 'model' => 'gpt-3.5-turbo',
                 'messages' => [
-                    ['role' => 'system', 'content' => 'You are a MySql database Engineer: <br>' . $schema ],
+                    ['role' => 'system', 'content' => 'You are a MySql database Engineer: <br>' . $schema],
                     ['role' => 'user', 'content' => 'Generate ' . $language . ' query without explanation: ' . $userText],
                 ],
                 'max_tokens' => 600,
-                "temperature" => 0.7,
+                "temperature" => 0.5,
                 "top_p" => 1,
             ],
         ]);
@@ -78,6 +87,36 @@ class QueryLogsController extends Controller
         $responseData = json_decode($response->getBody(), true);
 
         $result = $responseData['choices'][0]['message']['content'];
+
+        if (Session::has('dbSchema')) {
+            $config = Session::get('dynamic_data');
+            Config::set('database.connections.dynamic', $config);
+            Config::set('database.default', 'dynamic');
+
+            $resultData = DB::connection('dynamic')->select($result);
+
+            $dbResponse = $client->post($apiUrl, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer ' . $apiKey,
+                ],
+                'json' => [
+                    'model' => 'gpt-3.5-turbo',
+                    'messages' => [
+                        ['role' => 'system', 'content' => 'You are a Front end Engineer: '],
+                        ['role' => 'user', 'content' => 'Convert data in table html with inline css with white border and padding without any other explanation: ' . json_encode($resultData)],
+                    ],
+                    'max_tokens' => 600,
+                    "temperature" => 0.7,
+                    "top_p" => 1,
+                ],
+            ]);
+            $dbResponseData = json_decode($dbResponse->getBody(), true);
+
+            $dbResult = $dbResponseData['choices'][0]['message']['content'];
+
+            return response()->json($dbResult);
+        }
 
         return response()->json($result);
     }

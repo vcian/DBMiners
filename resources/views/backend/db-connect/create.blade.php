@@ -208,7 +208,7 @@
         $(document).on('click', '.create-schema', function() {
             let schema = $('#schema').val();
             let url = "{{ route('backend.query_logs.chat') }}";
-
+            sessionStorage.setItem('isChatEnable', true);
             localStorage.setItem("schema", schema);
             window.location.href = url;
         }); 

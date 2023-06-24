@@ -1,12 +1,17 @@
-
 const chatInput = $("#chat-input");
 const sendButton = $("#send-btn");
 const chatContainer = $(".chat-container");
 const themeButton = $("#theme-btn");
 const deleteButton = $("#delete-btn");
+const languageInput = $('#language');
 
-let userText = 'Generate MySql Query';
-const API_KEY = "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"; // Paste your API key here
+let userText = '';
+let selectedLanguage = 'Mysql';
+let schema = localStorage.getItem('schema');
+
+languageInput.on("change", function () {
+    selectedLanguage = $(this).val();
+});
 
 // Function to load chat history and theme from local storage
 const loadDataFromLocalstorage = () => {
@@ -31,31 +36,31 @@ const createChatElement = (content, className) => {
 
 // Function to get chat response from the API
 const getChatResponse = async (incomingChatDiv) => {
-    const API_URL = "https://api.openai.com/v1/completions";
     const pElement = $("<p>");
-    console.log(userText);
-    const requestOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-            model: "text-davinci-003",
-            prompt: userText,
-            max_tokens: 600,
-            temperature: 0.2,
-            n: 1,
-            stop: null
-        })
-    }
 
-    try {
-        const response = await (await fetch(API_URL, requestOptions)).json();
-        pElement.text(response.choices[0].text.trim());
-    } catch (error) {
-        pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");
-    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var data = {
+        'userText': userText,
+        'schema': schema,
+        'language': selectedLanguage
+    };
+    $.ajax({
+        method: 'POST',
+        url: "/chat/response",
+        data: data,
+        success: function (response) {
+            console.log(response);
+            pElement.html(response);
+        },
+        error: function (response) {
+            console.log(response);
+            pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");
+        }
+    });
 
     incomingChatDiv.find(".typing-animation").remove();
     incomingChatDiv.find(".chat-details").append(pElement);
@@ -82,7 +87,13 @@ const showTypingAnimation = () => {
                           <div class="typing-dot" style="--delay: 0.4s"></div>
                       </div>
                   </div>
-                  <span class="material-symbols-rounded">content_copy</span>
+                  <button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
+                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1">
+                            </rect>
+                        </svg>Copy code</button>
               </div>`;
 
     const incomingChatDiv = createChatElement(html, "incoming");
@@ -93,11 +104,7 @@ const showTypingAnimation = () => {
 
 // Function to handle the outgoing chat message
 const handleOutgoingChat = () => {
-    // const promptPrefix = "Generate Mysql Query:";
-    const promptPrefix = "";
-    const inputText = chatInput.val().trim();
-    userText = `${promptPrefix} ${inputText}`;
-    // userText = chatInput.val().trim();
+    userText = chatInput.val().trim();
     if (!userText) return;
 
     chatInput.val("");
@@ -106,7 +113,7 @@ const handleOutgoingChat = () => {
     const html = `<div class="chat-content">
                   <div class="chat-details">
                   ${userImage}
-                      <p>${inputText}</p>
+                      <p>${userText}</p>
                   </div>
               </div>`;
 
@@ -119,9 +126,12 @@ const handleOutgoingChat = () => {
 
 // Event listener for delete button
 deleteButton.on("click", () => {
+    let baseUrl = window.location.origin;
+    let url = `${baseUrl}/db-connect`;
     if (confirm("Are you sure you want to delete all the chats?")) {
         localStorage.removeItem("all-chats");
-        loadDataFromLocalstorage();
+        window.location.href = url;
+        // loadDataFromLocalstorage();
     }
 });
 

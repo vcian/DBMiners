@@ -64,7 +64,7 @@ class QueryLogsController extends Controller
         $userText = $request->userText;
         $language = $request->language;
         $apiUrl = 'https://api.openai.com/v1/chat/completions';
-        $apiKey = config('services.open_ai.secret');
+        $apiKey = config('openai.api_key');
         $client = new Client();
 
         $response = $client->post($apiUrl, [

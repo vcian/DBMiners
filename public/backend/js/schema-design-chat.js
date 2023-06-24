@@ -4,10 +4,6 @@ const sendButton = $("#send-btn");
 const chatContainer = $(".chat-container");
 const themeButton = $("#theme-btn");
 const deleteButton = $("#delete-btn");
-
-let userText = 'Act like MYSQL Devloper';
-const API_KEY = "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"; // Paste your API key here
-
 // Function to load chat history and theme from local storage
 const loadDataFromLocalstorage = () => {
     const themeColor = localStorage.getItem("themeColor");
@@ -32,34 +28,28 @@ const createChatElement = (content, className) => {
 
 // Function to get chat response from the API
 const getChatResponse = async (incomingChatDiv) => {
-    const API_URL = "https://api.openai.com/v1/completions";
     const pElement = $("<p>");
-    const requestOptions = {
-        method: "POST",
+    
+    $.ajax({
+        url: 'schema-chat',
+        type: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        body: JSON.stringify({
-            model: "text-davinci-002",
-            prompt: chatInput,
-            temperature:0,
-            max_tokens:600,
-            top_p:1,
-            frequency_penalty:0.0,
-            presence_penalty:0.0,
-            stop:["\n"]
-        })
-    }
-
-    try {
-        console.log('Please design schema in MYSQL format '+chatInput)
-        const response = await (await fetch(API_URL, requestOptions)).json();
-        console.log(response);
-        pElement.text(response.choices[0].text.trim());
-    } catch (error) {
-        pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");
-    }
+        data: JSON.stringify(chatInput),
+        success: function(response) {
+            try {
+                pElement.text(response);
+            } catch (error) {
+                pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");
+            }
+        },
+        error: function(xhr, status, error) {
+          console.error(error);
+        }
+      });
+   
 
     incomingChatDiv.find(".typing-animation").remove();
     incomingChatDiv.find(".chat-details").append(pElement);
@@ -157,3 +147,17 @@ loadDataFromLocalstorage();
 
 // Event listener for send button
 sendButton.on("click", handleOutgoingChat);
+
+function download(response) {
+    if (response) {
+        var blob = new Blob([response], { type: 'text/plain' });
+        var url = URL.createObjectURL(blob);
+  
+        var downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = 'myFile.txt';
+        downloadLink.click();
+        console.log(url)
+        URL.revokeObjectURL(url);
+    }
+}

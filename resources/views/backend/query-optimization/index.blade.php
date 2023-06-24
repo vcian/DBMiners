@@ -4,7 +4,9 @@
         <div class="col-12 col-md-6 relative">
             <div class="d-flex">
                 <p class="mb-3 d-flex ">Input Query</p>
-                <select id="converTO" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500" style="padding: 5px;
+                <select id="converTO"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500"
+                    style="padding: 5px;
                 margin: 10px;
                 margin-left: 10px;
                 padding-right: 35px;">
@@ -42,7 +44,7 @@
                     class="w-100 h-100 rounded-2xl bg-dark-black border-0 p-3 resize-none focus:shadow-none focus:offset-none"></textarea>
             </div>
             <div class="buttons flex absolute right-5 bottom-5">
-                <button
+                <button onclick="copyToClipboard()"
                     class="bg-light-black border-[1px] border-border-light w-12 h-12 rounded-3xl flex items-center justify-center mr-3">
                     <img src="{{ asset('images/web/copy.svg') }}" alt="copy" />
                 </button>
@@ -54,6 +56,30 @@
 @section('after-scripts')
     <script src="{{ asset('js/home.js') }}"></script>
     <script>
+        function copyToClipboard() {
+            /* Get the text from the input field */
+            var text = document.getElementById("optimizedQuery").value;
+
+            /* Create a temporary input element */
+            var tempInput = document.createElement("input");
+            tempInput.setAttribute("value", text);
+
+            /* Append the input element to the HTML body */
+            document.body.appendChild(tempInput);
+
+            /* Select the text inside the input element */
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the selected text to the clipboard */
+            document.execCommand("copy");
+
+            /* Remove the temporary input element from the HTML body */
+            document.body.removeChild(tempInput);
+
+            /* Optionally, provide feedback to the user */
+            toastr.success("Text copied to clipboard!");
+        }
         $("#optimizeQueryForm").validate({
             rules: {
                 prompt: {
@@ -96,7 +122,7 @@
                 success: function(data, xhr) {
                     $('#optimizedQuery').html(data.data.choices[0].text);
                 },
-                error : function(data) {
+                error: function(data) {
                     if (data.responseJSON.message == 'Please write proper mysql query') {
                         toastr.error(data.responseJSON.message);
                     }

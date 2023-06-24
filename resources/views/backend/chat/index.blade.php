@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="mx-auto h-100 rounded">
-        <div class="chat-container overflow-y-scroll" style="max-height: 32rem;">
+        <div class="chat-container overflow-y-scroll w-100 h-[calc(100vh-180px)]">
             <div class="chat outgoing">
                 <div class="chat-content">
                     <div class="chat-details">

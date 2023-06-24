@@ -76,10 +76,7 @@ if (!function_exists('apiCall')) {
         $url = config('config-variables.openai_api_url') . $endPoint;
         $client = new Client();
 
-        if (\Session::has('access_token')) {
-            $headers['Authorization'] = 'Bearer ' . Session::get('access_token');
-            $headers['apiKey'] = config('config-variables.openai_api_key');
-        }
+        $headers['Authorization'] = 'Bearer ' . config('config-variables.openai_api_key');
 
         if ($method == 'post') {
             $response = $client->post($url, ['json' => $parameter, 'headers' => $headers]);
@@ -87,8 +84,7 @@ if (!function_exists('apiCall')) {
             $response = $client->delete($url, ['json' => $parameter, 'headers' => $headers]);
         } else if ($method == 'get') {
             $response = $client->request($method, $url, ['headers' => [
-                'Authorization' => 'Bearer ' . Session::get('access_token'),
-                'apiKey' => config('config-variables.openai_api_key')
+                'Authorization' => 'Bearer ' . config('config-variables.openai_api_key'),
             ]]);
         } else {
             $response = $client->request($method, $url, ['headers' => $headers]);

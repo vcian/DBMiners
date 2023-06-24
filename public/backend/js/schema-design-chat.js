@@ -16,7 +16,7 @@ const loadDataFromLocalstorage = () => {
                           <p>Specialized in Schema Design.</p>
                       </div>`;
 
-    chatContainer.html(localStorage.getItem("all-chats") || defaultText);
+    chatContainer.html(localStorage.getItem("all-schemas") || defaultText);
     chatContainer.scrollTop(chatContainer[0].scrollHeight);
 }
 
@@ -28,7 +28,7 @@ const createChatElement = (content, className) => {
 
 // Function to get chat response from the API
 const getChatResponse = async (incomingChatDiv) => {
-    const pElement = $("<p>");
+    const pElement = $("<p class='api_response'>");
     
     $.ajax({
         url: 'schema-chat',
@@ -53,7 +53,7 @@ const getChatResponse = async (incomingChatDiv) => {
 
     incomingChatDiv.find(".typing-animation").remove();
     incomingChatDiv.find(".chat-details").append(pElement);
-    localStorage.setItem("all-chats", chatContainer.html());
+    localStorage.setItem("all-schema", chatContainer.html());
     chatContainer.scrollTop(chatContainer[0].scrollHeight);
 }
 
@@ -114,7 +114,7 @@ const handleOutgoingChat = () => {
 // Event listener for delete button
 deleteButton.on("click", () => {
     if (confirm("Are you sure you want to delete all the chats?")) {
-        localStorage.removeItem("all-chats");
+        localStorage.removeItem("all-schemas");
         loadDataFromLocalstorage();
     }
 });

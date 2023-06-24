@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Validation\Rule;
 use OpenAI;
 
 class QueryLogsController extends Controller
@@ -47,7 +49,7 @@ class QueryLogsController extends Controller
     {
         try {
             Session::put('isChat', true);
-
+            
             return view('backend.chat.index');
         } catch (Exception $ex) {
             Log::info($ex);
@@ -66,7 +68,6 @@ class QueryLogsController extends Controller
         $apiUrl = 'https://api.openai.com/v1/chat/completions';
         $apiKey = config('openai.api_key');
         $client = new Client();
-
         $response = $client->post($apiUrl, [
             'headers' => [
                 'Content-Type' => 'application/json',
@@ -119,5 +120,28 @@ class QueryLogsController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    public function validateSchema(Request $request)
+    {
+        $request->validate([
+            'schema' => [
+                'required',
+                Rule::custom(function ($value, $attribute) {
+                    // Convert the textarea value to an array of SQL statements
+                    $statements = array_filter(array_map('trim', explode(';', $value)));
+    
+                    // Validate each SQL statement in the array
+                    foreach ($statements as $statement) {
+                        // Validate the SQL statement using the `Schema` facade
+                        if (!Schema::hasValidGrammar($statement)) {
+                            return false;
+                        }
+                    }
+    
+                    return true;
+                })
+            ]
+        ]);
     }
 }

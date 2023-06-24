@@ -9,4 +9,5 @@ Route::controller(QueryLogsController::class)
         Route::get('query-logs', 'index')->name('index');
         Route::get('chat', 'openChat')->name('chat');
         Route::post('chat/response', 'callOpenAIChatAPI')->name('response');
+        Route::post('validate/schema', 'validateSchema')->name('validate.schema');
     });

@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @push('after-styles')
+    <style>
+        .typing-content .form-group {
+            padding: 0 10px;
+            margin: 0;
+            flex: 1 1 0;
+            width: auto;
+        }
+        .typing-textarea  {
+            max-width: 90%;
+        }
+        .typing-controls {
+            max-width: 10%;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -81,13 +95,13 @@
         </div>
         <!-- Typing container -->
 
-        <div class="typing-container relative">
+        <div class="typing-container relative d-flex">
             <div class="typing-content">
-                <div class="typing-textarea">
+                <div class="typing-textarea form-group">
                     <textarea id="chat-input" spellcheck="false" placeholder="Enter a prompt here" required></textarea>
                     <span id="send-btn" class="material-symbols-rounded">send</span>
                 </div>
-                <div class="typing-controls">
+                <div class="typing-controls form-group d-flex flex-column ">
                     {{-- <span id="theme-btn" class="material-symbols-rounded">light_mode</span> --}}
                     {{-- <span id="delete-btn" class="material-symbols-rounded">delete</span> --}}
                     <button

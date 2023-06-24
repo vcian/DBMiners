@@ -5,11 +5,7 @@
             <div class="d-flex">
                 <p class="mb-3 d-flex ">Input Query</p>
                 <select id="converTO"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500"
-                    style="padding: 5px;
-                margin: 10px;
-                margin-left: 10px;
-                padding-right: 35px;">
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500">
                     <option value="0">Optimized</option>
                     <option value="1">Laravel ORM (PHP)</option>
                     <option value="2">Hibernate ORM(Java)</option>

@@ -184,6 +184,20 @@ span.material-symbols-rounded {
   outline: 1px solid var(--incoming-chat-border);
 }
 
+#converTO {
+  resize: none;
+  border: none;
+  color: var(--text-color);
+  border-radius: 4px;
+  overflow-y: auto;
+  background: var(--incoming-chat-bg);
+  outline: 1px solid var(--incoming-chat-border);
+  padding: 5px;
+  margin: 0 0 10px 0;
+  margin-left: 10px;
+  padding-right: 35px;
+}
+
 @keyframes animateDots {
 
   0%,

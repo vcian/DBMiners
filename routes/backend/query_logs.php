@@ -7,5 +7,6 @@ Route::controller(QueryLogsController::class)
     ->as('query_logs.')
     ->group(function () {
         Route::get('query-logs', 'index')->name('index');
-        Route::get('chat', 'openChat')->name('caht');
+        Route::get('chat', 'openChat')->name('chat');
+        Route::post('chat/response', 'callOpenAIChatAPI')->name('response');
     });

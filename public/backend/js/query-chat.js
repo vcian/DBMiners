@@ -36,7 +36,7 @@ const createChatElement = (content, className) => {
 
 // Function to get chat response from the API
 const getChatResponse = async (incomingChatDiv) => {
-    const pElement = $("<p>");
+    const pElement = $("<p class='api_response'>");
 
     $.ajaxSetup({
         headers: {
@@ -87,7 +87,7 @@ const showTypingAnimation = () => {
                           <div class="typing-dot" style="--delay: 0.4s"></div>
                       </div>
                   </div>
-                  <button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
+                  <button onclick="copyToClipboard(this)" class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
                             viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
                             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
@@ -163,3 +163,22 @@ loadDataFromLocalstorage();
 
 // Event listener for send button
 sendButton.on("click", handleOutgoingChat);
+
+function copyToClipboard(button) {
+    /* Get the text from the input field */
+    var text = button.parentElement.querySelector('.api_response').textContent
+    /* Create a temporary input element */
+    var tempInput = document.createElement("input");
+    tempInput.setAttribute("value", text);
+    /* Append the input element to the HTML body */
+    document.body.appendChild(tempInput);
+    /* Select the text inside the input element */
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+    /* Copy the selected text to the clipboard */
+    document.execCommand("copy");
+    /* Remove the temporary input element from the HTML body */
+    document.body.removeChild(tempInput);
+    /* Optionally, provide feedback to the user */
+    toastr.success("Text copied to clipboard!");
+}

@@ -166,7 +166,6 @@ function download(response) {
         console.log(url)
         URL.revokeObjectURL(url);
     }
-<<<<<<< HEAD
 }
 
 function copyToClipboard(button) {
@@ -186,6 +185,4 @@ function copyToClipboard(button) {
     document.body.removeChild(tempInput);
     /* Optionally, provide feedback to the user */
     toastr.success("Text copied to clipboard!");
-=======
->>>>>>> 60b219fe386f13e91e67a51dbb85ca61876261a8
 }

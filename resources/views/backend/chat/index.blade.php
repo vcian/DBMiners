@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="mx-auto h-100 rounded">
-        <div class="chat-container overflow-y-scroll w-100 h-[calc(100vh-180px)]">
+        {{-- <div class="chat-container overflow-y-scroll" style="max-height: 32rem;">
             <div class="chat outgoing">
                 <div class="chat-content">
                     <div class="chat-details">
@@ -94,8 +94,24 @@
                         </svg>Copy code</button>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Typing container -->
+
+        <div class="chat-container overflow-y-scroll w-100 h-[calc(100vh-180px)]"></div>
+
+        <!-- Typing container -->
+        {{-- <div class="typing-container relative d-flex">
+            <div class="typing-content">
+                <div class="typing-textarea">
+                    <textarea id="chat-input" spellcheck="false" placeholder="Enter a prompt here" required></textarea>
+                    <span id="send-btn" class="material-symbols-rounded">send</span>
+                </div>
+                <div class="typing-controls">
+                    <span id="theme-btn" class="material-symbols-rounded">light_mode</span>
+                    <span id="delete-btn" class="material-symbols-rounded">delete</span>
+                </div>
+            </div>
+        </div> --}}
 
         <div class="typing-container relative d-flex">
             <div class="typing-content">
@@ -110,8 +126,8 @@
                 <div class="typing-controls form-group d-flex flex-column ">
                     {{-- <span id="theme-btn" class="material-symbols-rounded">light_mode</span> --}}
                     {{-- <span id="delete-btn" class="material-symbols-rounded">delete</span> --}}
-                    <button
-                        class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-1 hover:text-white"><svg
+                    
+                        <span id="delete-btn" class="material-symbols-rounded"><svg
                             stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                             stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
                             width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -120,11 +136,16 @@
                             </path>
                             <line x1="10" y1="11" x2="10" y2="17"></line>
                             <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg></button>
+                        </svg></span>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @section('after-scripts')
+<script>
+    let userImage = '<img src="{{ asset('images/web/user.svg') }}" alt="user-img">';
+    let botImage = '<img src="{{ asset('images/web/boat.svg') }}" alt="chatbot-img">';
+</script>
+<script src="{{ asset('backend/js/query-chat.js') }}"></script>
 @endsection

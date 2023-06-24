@@ -36,6 +36,15 @@
                 Query Optimization
             </a>
         </li>
+        <li class="side-list px-[25px] py-[15px] relative">
+            <a href="{{ route('backend.schema_design.index') }}"
+                class="flex items-center text-[15px] hover:text-white @if (Route::is(['backend.schema_design.*'])) active @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <img src="{{ asset ('images/web/optimize.svg') }}" alt="optimization"
+                    class="me-3" width="20" />
+                Schema Design
+            </a>
+        </li>
         <!-- <li class="side-list px-[25px] py-[15px] relative">
             <a href="{{ route('backend.query_logs.index') }}"
                 class="flex items-center text-[15px] hover:text-white @if (Route::is(['backend.query_logs.*'])) active @endif"

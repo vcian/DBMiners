@@ -5,8 +5,8 @@ const chatContainer = $(".chat-container");
 const themeButton = $("#theme-btn");
 const deleteButton = $("#delete-btn");
 
-let userText = 'Generate MySql Query';
-const API_KEY = "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"; // Paste your API key here
+let userText = 'Act like MYSQL Devloper';
+const API_KEY = "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"; // Paste your API key here
 
 // Function to load chat history and theme from local storage
 const loadDataFromLocalstorage = () => {
@@ -16,7 +16,8 @@ const loadDataFromLocalstorage = () => {
 
     const defaultText = `<div class="default-text">
                           <h1>DbMiners</h1>
-                          <p>Start a conversation and explore the power of AI.<br> Your chat history will be displayed here.</p>
+                          <p>Hi, I am Schema Bot.</p>
+                          <p>Specialized in Schema Design.</p>
                       </div>`;
 
     chatContainer.html(localStorage.getItem("all-chats") || defaultText);
@@ -33,7 +34,6 @@ const createChatElement = (content, className) => {
 const getChatResponse = async (incomingChatDiv) => {
     const API_URL = "https://api.openai.com/v1/completions";
     const pElement = $("<p>");
-    console.log(userText);
     const requestOptions = {
         method: "POST",
         headers: {
@@ -41,17 +41,21 @@ const getChatResponse = async (incomingChatDiv) => {
             "Authorization": `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-            model: "text-davinci-003",
-            prompt: userText,
-            max_tokens: 600,
-            temperature: 0.2,
-            n: 1,
-            stop: null
+            model: "text-davinci-002",
+            prompt: chatInput,
+            temperature:0,
+            max_tokens:600,
+            top_p:1,
+            frequency_penalty:0.0,
+            presence_penalty:0.0,
+            stop:["\n"]
         })
     }
 
     try {
+        console.log('Please design schema in MYSQL format '+chatInput)
         const response = await (await fetch(API_URL, requestOptions)).json();
+        console.log(response);
         pElement.text(response.choices[0].text.trim());
     } catch (error) {
         pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");

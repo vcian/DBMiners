@@ -35,7 +35,7 @@
         <div>
             @include('backend.includes.sidebar')
             <main class="p-4 w-[calc(100%-250px)] float-right">
-                <div class="p-3 rounded-lg bg-black-bg">
+                <div class="rounded-lg bg-black-bg">
                     @yield('content')
                 </div>
             </main>

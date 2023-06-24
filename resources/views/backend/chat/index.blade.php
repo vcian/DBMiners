@@ -4,101 +4,103 @@
 @endpush
 
 @section('content')
-    <div class="row">
-        <div class="col-12 col-md-12 relative">
-            <div class="flex flex-col flex-grow w-full  bg-white shadow-xl rounded-lg overflow-hidden">
-                <div class="flex flex-col flex-grow h-0 p-4 overflow-auto max-h-60 overflow-y-scroll">
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                        <div>
-                            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-                        <div>
-                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
-                                </p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-                        <div>
-                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                        <div>
-                            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. </p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-                        <div>
-                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. </p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-                        <div>
-                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt.</p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-                        <div>
-                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-                        <div>
-                            <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. </p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                    </div>
-                    <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-                        <div>
-                            <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
-                                <p class="text-sm">Lorem ipsum dolor sit.</p>
-                            </div>
-                            <span class="text-xs text-gray-500 leading-none">2 min ago</span>
-                        </div>
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+    <div class="mx-auto h-100">
+        <div class="chat-container overflow-y-scroll" style="max-height: 32rem;">
+            <div class="chat outgoing">
+                <div class="chat-content">
+                    <div class="chat-details">
+                        <img src="{{ asset('images/web/user.svg') }}" alt="user-img">
+                        <p>asd</p>
                     </div>
                 </div>
+            </div>
+            <div class="chat incoming">
+                <div class="chat-content">
+                    <div class="chat-details">
+                        <img src="{{ asset('images/web/boat.svg') }}" alt="chatbot-img">
 
-                <div class="bg-gray-300 p-4">
-                    <input class="flex items-center h-10 w-full rounded px-3 text-sm" type="text"
-                        placeholder="Type your message…">
+                        <p>Sorry, I'm not sure what you are asking. Could you please clarify your question?</p>
+                    </div>
+                    <button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
+                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1">
+                            </rect>
+                        </svg>Copy code</button>
+                </div>
+            </div>
+            <div class="chat outgoing">
+                <div class="chat-content">
+                    <div class="chat-details">
+                        <img src="{{ asset('images/web/user.svg') }}" alt="user-img">
+                        <p>asd</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat incoming">
+                <div class="chat-content">
+                    <div class="chat-details">
+                        <img src="{{ asset('images/web/boat.svg') }}" alt="chatbot-img">
+
+                        <p>Sorry, I'm not sure what you are asking. Could you please clarify your question?</p>
+                    </div>
+                    <button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
+                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1">
+                            </rect>
+                        </svg>Copy code</button>
+                </div>
+            </div>
+            <div class="chat outgoing">
+                <div class="chat-content">
+                    <div class="chat-details">
+                        <img src="{{ asset('images/web/user.svg') }}" alt="user-img">
+                        <p>asd</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat incoming">
+                <div class="chat-content">
+                    <div class="chat-details">
+                        <img src="{{ asset('images/web/boat.svg') }}" alt="chatbot-img">
+
+                        <p>Sorry, I'm not sure what you are asking. Could you please clarify your question?</p>
+                    </div>
+                    <button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2"
+                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1">
+                            </rect>
+                        </svg>Copy code</button>
+                </div>
+            </div>
+        </div>
+        <!-- Typing container -->
+
+        <div class="typing-container relative">
+            <div class="typing-content">
+                <div class="typing-textarea">
+                    <textarea id="chat-input" spellcheck="false" placeholder="Enter a prompt here" required></textarea>
+                    <span id="send-btn" class="material-symbols-rounded">send</span>
+                </div>
+                <div class="typing-controls">
+                    {{-- <span id="theme-btn" class="material-symbols-rounded">light_mode</span> --}}
+                    {{-- <span id="delete-btn" class="material-symbols-rounded">delete</span> --}}
+                    <button
+                        class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-1 hover:text-white"><svg
+                            stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                            </path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg></button>
                 </div>
             </div>
         </div>

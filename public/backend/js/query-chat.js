@@ -55,6 +55,10 @@ const getChatResponse = async (incomingChatDiv) => {
         success: function (response) {
             console.log(response);
             pElement.html(response);
+            incomingChatDiv.find(".typing-animation").remove();
+            incomingChatDiv.find(".chat-details").append(pElement);
+            localStorage.setItem("all-chats", chatContainer.html());
+            chatContainer.scrollTop(chatContainer[0].scrollHeight);
         },
         error: function (response) {
             console.log(response);
@@ -62,10 +66,10 @@ const getChatResponse = async (incomingChatDiv) => {
         }
     });
 
-    incomingChatDiv.find(".typing-animation").remove();
-    incomingChatDiv.find(".chat-details").append(pElement);
-    localStorage.setItem("all-chats", chatContainer.html());
-    chatContainer.scrollTop(chatContainer[0].scrollHeight);
+    // incomingChatDiv.find(".typing-animation").remove();
+    // incomingChatDiv.find(".chat-details").append(pElement);
+    // localStorage.setItem("all-chats", chatContainer.html());
+    // chatContainer.scrollTop(chatContainer[0].scrollHeight);
 }
 
 // Function to copy the response text to the clipboard
@@ -121,7 +125,7 @@ const handleOutgoingChat = () => {
     const outgoingChatDiv = createChatElement(html, "outgoing");
     chatContainer.append(outgoingChatDiv);
     chatContainer.scrollTop(chatContainer[0].scrollHeight);
-    setTimeout(showTypingAnimation, 500);
+    setTimeout(showTypingAnimation(), 500);
 }
 
 // Event listener for delete button
@@ -131,7 +135,7 @@ deleteButton.on("click", () => {
     if (confirm("Are you sure you want to delete all the chats?")) {
         localStorage.removeItem("all-chats");
         window.location.href = url;
-        // loadDataFromLocalstorage();
+        loadDataFromLocalstorage();
     }
 });
 

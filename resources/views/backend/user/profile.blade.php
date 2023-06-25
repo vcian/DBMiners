@@ -20,7 +20,7 @@
 
             Account
         </button>
-        <button data-tab-value="#tab_billing"
+        {{-- <button data-tab-value="#tab_billing"
             class="uppercase d-flex items-center me-3 text-[13px] pb-2 relative custom-action">
             <svg id="vuesax_bold_card" data-name="vuesax/bold/card" xmlns="http://www.w3.org/2000/svg" width="20"
                 height="20" viewBox="0 0 20 20" class="me-2">
@@ -35,7 +35,7 @@
                 </g>
             </svg>
             Billing
-        </button>
+        </button> --}}
     </div>
 
     <div class="tab-content bg-no-repeat bg-cover mt-3 p-3 bg-gray-bg">

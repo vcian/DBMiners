@@ -14,26 +14,19 @@
         <div class="tabs flex items-center">
             <button data-tab-value="#tab_connect"
                 class="active uppercase d-flex items-center me-3 text-[13px] pb-2 relative custom-action">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" class="me-2">
-                    <g id="noun-chain-1655550" transform="translate(-70.937 -14.141)">
-                        <path id="Path_94447" data-name="Path 94447"
-                            d="M96.886,211.746a4.451,4.451,0,0,0,.358-1.727,4.373,4.373,0,0,0-.147-1.159,5.475,5.475,0,0,0-.274-.758,4.179,4.179,0,0,0-.842-1.18,5.037,5.037,0,0,0-1.179-.842l-.632.632a1.467,1.467,0,0,0-.379,1.348,2.219,2.219,0,0,1,1.074,1.074,2.484,2.484,0,0,1,.189.779,2.155,2.155,0,0,1-.632,1.685l-4.505,4.423a2.174,2.174,0,0,1-3.074-3.075l3.474-3.475a5.065,5.065,0,0,1-.168-2.907c-.147.105-.274.232-.421.358l-4.442,4.444A4.367,4.367,0,0,0,84,214.484a4.319,4.319,0,0,0,1.284,3.1,4.408,4.408,0,0,0,6.211,0l4.463-4.465a3.447,3.447,0,0,0,.358-.421,4.349,4.349,0,0,0,.568-.948Z"
-                            transform="translate(-13.065 -184.72)" />
-                        <path id="Path_94448" data-name="Path 94448"
-                            d="M277,18.517a4.319,4.319,0,0,0-1.284-3.1,4.408,4.408,0,0,0-6.211,0l-4.463,4.466a3.446,3.446,0,0,0-.358.421,4.359,4.359,0,0,0-.568.948,4.451,4.451,0,0,0-.358,1.727,4.373,4.373,0,0,0,.147,1.159,5.468,5.468,0,0,0,.274.758,4.179,4.179,0,0,0,.842,1.18,4.493,4.493,0,0,0,1.179.842l.632-.632a1.467,1.467,0,0,0,.379-1.348,2.219,2.219,0,0,1-1.074-1.074,2.484,2.484,0,0,1-.189-.779,2.154,2.154,0,0,1,.632-1.685l4.505-4.423a2.174,2.174,0,0,1,3.074,3.075l-3.495,3.5a5.065,5.065,0,0,1,.168,2.907c.147-.105.274-.232.421-.358l4.463-4.466A4.367,4.367,0,0,0,277,18.517Z"
-                            transform="translate(-186.065 0)" />
-                    </g>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="15" height="15" class="me-2">
+                    <path
+                        d="M96 0C78.3 0 64 14.3 64 32v96h64V32c0-17.7-14.3-32-32-32zM288 0c-17.7 0-32 14.3-32 32v96h64V32c0-17.7-14.3-32-32-32zM32 160c-17.7 0-32 14.3-32 32s14.3 32 32 32v32c0 77.4 55 142 128 156.8V480c0 17.7 14.3 32 32 32s32-14.3 32-32V412.8c12.3-2.5 24.1-6.4 35.1-11.5c-2.1-10.8-3.1-21.9-3.1-33.3c0-80.3 53.8-148 127.3-169.2c.5-2.2 .7-4.5 .7-6.8c0-17.7-14.3-32-32-32H32zM432 512a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm47.9-225c4.3 3.7 5.4 9.9 2.6 14.9L452.4 356H488c5.2 0 9.8 3.3 11.4 8.2s-.1 10.3-4.2 13.4l-96 72c-4.5 3.4-10.8 3.2-15.1-.6s-5.4-9.9-2.6-14.9L411.6 380H376c-5.2 0-9.8-3.3-11.4-8.2s.1-10.3 4.2-13.4l96-72c4.5-3.4 10.8-3.2 15.1 .6z" />
                 </svg>
                 Connect
             </button>
             <button data-tab-value="#tab_upload"
                 class="uppercase d-flex items-center me-3 text-[13px] pb-2 relative custom-action">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" stroke-width="1.5"
-                    stroke="currentColor" class="me-2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="15" height="15" class="me-2">
+                    <path
+                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                 </svg>
-                Upload
+                Add Schema
             </button>
         </div>
 
@@ -45,9 +38,11 @@
                         <label for="connection" class="col-md-4 col-form-label text-md-end">{{ __('Connection') }}</label>
 
                         <div class="col-md-6">
-                            <input id="connection" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="connection" value="{{ old('connection') }}" required autocomplete="connection"
-                                autofocus>
+                            <select name="connection" id="connection" class="form-control @error('name') is-invalid @enderror">
+                                <option selected value="mysql">MySql</option>
+                                <option disabled value="pgsql">PostgreSQL</option>
+                                <option disabled value="sqlite">SQLite</option>
+                            </select>
                             @error('connection')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -123,24 +118,25 @@
             </div>
             <div class="tabs__tab" id="tab_upload" data-tab-info>
                 {{-- <form action="{{ route('backend.query_logs.chat') }}" method="get" id="add_schema"> --}}
-                    {{-- @csrf --}}
-                    <label for="db-username" class="col-md-4 col-form-label">{{ __('Upload SQL Schema') }}</label>
-                    <div class="flex items-center justify-center w-full relative">
-                        <div class="w-100">
-                            <textarea placeholder="Entry MySql Schema"
-                                class="w-100 h-100 rounded-2xl bg-dark-black border-0 p-3 resize-none focus:shadow-none" id="schema" name="schema" rows="15"></textarea>
-                        </div>
-                        <div class="buttons flex absolute right-7 bottom-5">
-                            <button
-                                class="bg-light-black border-[1px] border-border-light w-12 h-12 rounded-3xl flex items-center justify-center mr-3">
-                                <img src="{{ asset('images/web/refresh.svg') }}" alt="refresh" />
-                            </button>
-                            <button
-                                class="bg-cyan border-[1px] border-cyan w-12 h-12 rounded-3xl flex items-center justify-center create-schema">
-                                <img src="{{ asset('images/web/send.svg') }}" alt="send" />
-                            </button>
-                        </div>
+                {{-- @csrf --}}
+                <label for="db-username" class="col-md-4 col-form-label">{{ __('Add MySql Schema') }}</label>
+                <div class="flex items-center justify-center w-full relative">
+                    <div class="w-100">
+                        <textarea placeholder="Enter MySql Schema"
+                            class="w-100 h-100 rounded-2xl bg-dark-black border-0 p-3 resize-none focus:shadow-none" id="schema"
+                            name="schema" rows="15"></textarea>
                     </div>
+                    <div class="buttons flex absolute right-7 bottom-5">
+                        <button
+                            class="bg-light-black border-[1px] border-border-light w-12 h-12 rounded-3xl flex items-center justify-center mr-3">
+                            <img src="{{ asset('images/web/refresh.svg') }}" alt="refresh" />
+                        </button>
+                        <button
+                            class="bg-cyan border-[1px] border-cyan w-12 h-12 rounded-3xl flex items-center justify-center create-schema">
+                            <img src="{{ asset('images/web/send.svg') }}" alt="send" />
+                        </button>
+                    </div>
+                </div>
                 {{-- </form> --}}
             </div>
         </div>
@@ -207,10 +203,33 @@
 
         $(document).on('click', '.create-schema', function() {
             let schema = $('#schema').val();
-            let url = "{{ route('backend.query_logs.chat') }}";
-            sessionStorage.setItem('isChatEnable', true);
+            let redirectUrl = "{{ route('backend.query_logs.chat') }}";
             localStorage.setItem("schema", schema);
-            window.location.href = url;
-        }); 
+
+            window.location.href = redirectUrl;
+            
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+            // var data = {
+            //     'schema': schema,
+            // };
+            // $.ajax({
+            //     method: 'POST',
+            //     url: "{{ route('backend.query_logs.validate.schema') }}",
+            //     data: data,
+            //     success: function(response) {
+            //         console.log(response);
+            //         localStorage.setItem("schema", schema);
+
+            //         window.location.href = redirectUrl;
+            //     },
+            //     error: function(response) {
+            //         console.log(response);
+            //     }
+            // });
+        });
     </script>
 @endsection

@@ -38,9 +38,11 @@
                         <label for="connection" class="col-md-4 col-form-label text-md-end">{{ __('Connection') }}</label>
 
                         <div class="col-md-6">
-                            <input id="connection" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="connection" value="{{ old('connection') }}" required autocomplete="connection"
-                                autofocus>
+                            <select name="connection" id="connection" class="form-control @error('name') is-invalid @enderror">
+                                <option selected value="mysql">MySql</option>
+                                <option disabled value="pgsql">PostgreSQL</option>
+                                <option disabled value="sqlite">SQLite</option>
+                            </select>
                             @error('connection')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

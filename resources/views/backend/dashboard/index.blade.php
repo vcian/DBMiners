@@ -93,7 +93,7 @@
 @endpush
 @section('content')
 
-<div class="card bg-dark">
+{{-- <div class="card bg-dark">
 	<div class="card-header text-xl/[20px]">{{ __('Access Token') }}
 	</div>
 	<div class="card-body bg-dark">
@@ -110,7 +110,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --}}
 @endsection
 
 @section('after-scripts')

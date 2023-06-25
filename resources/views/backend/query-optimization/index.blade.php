@@ -6,7 +6,7 @@
                 <p class="mb-3 d-flex ">Input Query</p>
                 <select id="converTO"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500">
-                    <option value="0">Optimized</option>
+                    <option value="0">MySql</option>
                     <option value="1">Laravel ORM (PHP)</option>
                     <option value="2">Hibernate ORM(Java)</option>
                     <option value="3">SQLAlchemy ORM(Python)</option>
@@ -106,6 +106,7 @@
         });
 
         function getOptimizeQuery() {
+            $('#optimizeQuery').attr('disabled', true);
             var prompt = $('#prompt').val();
             var converTO = $('#converTO').val();
             $.ajax({
@@ -116,6 +117,7 @@
                     'conver_to': converTO
                 },
                 success: function(data, xhr) {
+                    $('#optimizeQuery').attr('disabled', false);
                     $('#optimizedQuery').html(data.data.choices[0].text);
                 },
                 error: function(data) {

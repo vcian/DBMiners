@@ -29,32 +29,33 @@ const createChatElement = (content, className) => {
 // Function to get chat response from the API
 const getChatResponse = async (incomingChatDiv) => {
     const pElement = $("<p class='api_response'>");
-    
+
     $.ajax({
         url: 'schema-chat',
         type: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: JSON.stringify(chatInput),
-        success: function(response) {
-            try {
-                pElement.text(response);
-            } catch (error) {
-                pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");
-            }
+        success: function (response) {
+            pElement.text(response);
+            incomingChatDiv.find(".typing-animation").remove();
+            incomingChatDiv.find(".chat-details").append(pElement);
+            localStorage.setItem("all-schema", chatContainer.html());
+            chatContainer.scrollTop(chatContainer[0].scrollHeight);
         },
-        error: function(xhr, status, error) {
-          console.error(error);
+        error: function (xhr, status, error) {
+            console.error(error);
+            pElement.addClass("error").text("Oops! Something went wrong while retrieving the response. Please try again.");
         }
-      });
-   
+    });
 
-    incomingChatDiv.find(".typing-animation").remove();
-    incomingChatDiv.find(".chat-details").append(pElement);
-    localStorage.setItem("all-schema", chatContainer.html());
-    chatContainer.scrollTop(chatContainer[0].scrollHeight);
+
+    // incomingChatDiv.find(".typing-animation").remove();
+    // incomingChatDiv.find(".chat-details").append(pElement);
+    // localStorage.setItem("all-schema", chatContainer.html());
+    // chatContainer.scrollTop(chatContainer[0].scrollHeight);
 }
 
 // Function to copy the response text to the clipboard
@@ -158,7 +159,7 @@ function download(response) {
     if (response) {
         var blob = new Blob([response], { type: 'text/plain' });
         var url = URL.createObjectURL(blob);
-  
+
         var downloadLink = document.createElement('a');
         downloadLink.href = url;
         downloadLink.download = 'myFile.txt';
